@@ -15,10 +15,10 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->striing('name');
+            $table->string('name');
             $table->text('information');
             $table->unsignedInteger('price');
-            $table->boolen('is_selling');
+            $table->boolean('is_selling');
             $table->integer('sort_order')->nullable();
             $table->foreignId('shop_id')
             ->constrained()
