@@ -18,8 +18,8 @@
             <div class="flex flex-wrap">
                 @foreach($images as $image)
                     <div class="w-1/4 p-2 md:p-4">
-                        <div class="border round-md p-2 md:p-4">
-                        <img class=“image” data-id="{{ $name }}_{{ $image->id }}" 
+                        <div class="border rounded-md p-2 md:p-4">
+                        <img class="image" data-id="{{ $name }}_{{ $image->id }}" 
                             data-file="{{ $image->filename }}" 
                             data-path="{{ asset('storage/products/') }}" 
                             data-modal="{{ $modal }}" 
