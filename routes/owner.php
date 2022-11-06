@@ -25,15 +25,15 @@ use App\Http\Controllers\Owner\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('owner.welcome');
-});
+// Route::get('/', function () {
+    // return view('owner.welcome');
+// });
 
 Route::prefix('shops')->
-    middleware('auth:owners')->group(function(){ 
-        Route::get('index', [ShopController::class, 'index'])->name('shops.index'); 
-        Route::get('edit/{shop}', [ShopController::class, 'edit'])->name('shops.edit'); 
-        Route::post('update/{shop}', [ShopController::class, 'update'])->name('shops.update'); 
+    middleware('auth:owners')->group(function(){
+        Route::get('index', [ShopController::class, 'index'])->name('shops.index');
+        Route::get('edit/{shop}', [ShopController::class, 'edit'])->name('shops.edit');
+        Route::post('update/{shop}', [ShopController::class, 'update'])->name('shops.update');
     });
 
 Route::resource('images', ImageController::class)
@@ -47,10 +47,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth:owners'])->name('dashboard');
 
 Route::middleware('guest')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-                ->name('register');
-
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    // Route::get('register', [RegisteredUserController::class, 'create'])
+                // ->name('register');
+//
+    // Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
