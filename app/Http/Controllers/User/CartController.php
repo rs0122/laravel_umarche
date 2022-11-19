@@ -17,7 +17,7 @@ class CartController extends Controller
         $totalPrice = 0;
 
         foreach($products as $product){
-            $totalPrice += $product->price * $product->pivot->quanity;
+            $totalPrice += $product->price * $product->pivot->quantity;
         }
 
         return view('user.cart',
@@ -63,10 +63,14 @@ class CartController extends Controller
                 return redirect()->route('user.cart.index');
             } else {
                 $lineItem = [
-                    'name' => $product->name,
-                    'description' =>  $product->information,
-                    'amount' => $product->price,
-                    'currency' => 'jpy',
+                    'price_data' => [
+                        'product_data' => [
+                            'name' => $product->name,
+                            'description' =>  $product->information,
+                        ] ,
+                        'unit_amount' => $product->price,
+                        'currency' => 'jpy',
+                    ],
                     'quantity' => $product->pivot->quantity,
                 ];
                 array_push($lineItems, $lineItem);
@@ -80,7 +84,6 @@ class CartController extends Controller
                 'quantity' => $product->pivot->quantity * -1
             ]);
 
-            dd('test');
         }
 
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
